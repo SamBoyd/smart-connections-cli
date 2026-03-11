@@ -1,0 +1,17 @@
+{
+  "name": "smart-connections-cli",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "CLI to query Smart Connections embeddings from an Obsidian vault",
+  "bin": {
+    "smart-connections": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "npx ava --verbose"
+  },
+  "keywords": ["obsidian", "smart-connections", "embeddings", "cli"],
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^6.0.1"
+  }
+}
