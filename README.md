@@ -1,22 +1,28 @@
 # smart-connections-cli
 
-A standalone CLI that queries [Smart Connections](https://github.com/brianpetro/obsidian-smart-connections) embeddings from an Obsidian vault. Find semantically related notes from the command line — no Obsidian required.
+Give your coding agent semantic search over your [Obsidian](https://obsidian.md/) vault, powered embeddings created by the [Smart Connections plugin](https://github.com/brianpetro/obsidian-smart-connections).
 
-Smart Connections pre-computes embedding vectors for every note in your vault and stores them in `.smart-env/`. This tool reads those vectors and ranks notes by cosine similarity. Zero runtime dependencies.
+Coding agents like [Claude Code](https://claude.ai/code), [Codex](https://github.com/openai/codex), and others can only discover related notes through manually-created links. This CLI lets them query the embedding vectors that Smart Connections has already computed for every note in your vault — finding semantically related notes from the command line, no Obsidian required.
+
+Zero runtime dependencies. No model inference at query time.
 
 ## Install
+
+### 1. Install the CLI
 
 ```bash
 npm install -g smart-connections-cli
 ```
 
-Or clone and link locally:
+### 2. Install the Agent Skill
+
+The included [Agent Skill](https://agentskills.io/) teaches your coding agent when and how to use the CLI. Install it with [`npx skills`](https://github.com/vercel-labs/skills):
 
 ```bash
-git clone https://github.com/your-username/smart-connections-cli.git
-cd smart-connections-cli
-npm link
+npx skills add SamBoyd/smart-connections-cli
 ```
+
+This works with any skills-compatible agent (Claude Code, Codex, Cursor, and [many more](https://agentskills.io/)).
 
 ## Prerequisites
 
@@ -32,7 +38,7 @@ smart-connections search <file-path> [options]
 
 | Argument | Description |
 |----------|-------------|
-| `file-path` | Path to a note relative to the vault root (e.g. `20-Projects/note.md`) |
+| `file-path` | Path to a note relative to the vault root (e.g. `Projects/note.md`) |
 
 ### Options
 
@@ -70,23 +76,6 @@ JSON (`--json`):
 
 ```json
 [{"score":0.8339,"path":"20-Projects/experiments/git-retro.md"},{"score":0.8183,"path":"40-Resources/notes/Experiment viability filter.md"}]
-```
-
-## How it works
-
-1. Reads `.smart-env/smart_env.json` to find the active embedding model
-2. Parses `.smart-env/multi/*.ajson` files to load pre-computed embedding vectors
-3. Looks up the target file's vector
-4. Computes cosine similarity against every other indexed note
-5. Returns the top results sorted by score
-
-No model inference happens at query time — all embeddings are pre-computed by the Smart Connections Obsidian plugin.
-
-## Development
-
-```bash
-npm install
-npm test
 ```
 
 ## License
