@@ -3,13 +3,26 @@
   "version": "0.1.0",
   "type": "module",
   "description": "CLI to query Smart Connections embeddings from an Obsidian vault",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samboyd/smart-connections-cli.git"
+  },
+  "author": "Sam Boyd",
   "bin": {
     "smart-connections": "./bin/cli.js"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "npx ava --verbose"
+    "test": "npx ava --verbose",
+    "prepublishOnly": "npm test"
   },
-  "keywords": ["obsidian", "smart-connections", "embeddings", "cli"],
+  "keywords": ["obsidian", "smart-connections", "embeddings", "cli", "agent-skills"],
   "license": "MIT",
   "devDependencies": {
     "ava": "^6.0.1"
